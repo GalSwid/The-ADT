@@ -11,39 +11,62 @@ Manager::Manager()
 
 void Manager::Run()
 {
-	char choice = getInput();
 
-	int numOfRoads;
-	int numOfActions;
-	int height;
-	int truckHeight;
+	getNumOfRoadsAndActions();
 
-	Road road;
-
-	switch (choice)
+	for (int i = 0; i < _numOfActions; i++)
 	{
-	case 'a':
-		Init();
-	case 'b':
-		AddBridge(height, road);
-	case 'c':
-		int res = WhichRoad(truckHeight);
-	case 'd':
-		Print(r);
-	default:
-		break;
+		char action;
+		int truckHeight;
+		int bridgeHeight;
+		int road;
+
+		cin >> action;
+		getParameters(action);
+
+		switch (action)
+		{
+		case 'a':
+			Init();
+		case 'b':
+			AddBridge(bridgeHeight, road);
+		case 'c':
+			int res = WhichRoad(truckHeight);
+		case 'd':
+			Print(r);
+		default:
+			break;
+		}
 	}
 }
 
 
-void Manager::Init(vector< pair<int, int>> Heap, vector<Road> roads, int numOfRoads)
+void Manager::Init()
 {
-	for (int i = 0; i < numOfRoads; i++)
+	for (int i = 0; i < _numOfRoads; i++)
 	{
-		Heap[i].second = i;
-		Heap[i].first = 1000000;
+		_heap[i].first = 1000000; // key
+		_heap[i].second = i; // value
 
-		roads[i].setListHead(NULL);
-		roads[i].setMaxHeapIndex(i)‏;
+		_roads[i].setListHead(NULL);
+		_roads[i].setMaxHeapIndex(i)‏;
 	}
+}
+
+void Manager::AddBridge(float bridgeHeight, int roadIndex)
+{
+	// add birdgeHeight to roads[roadIndex].list.setHead
+
+
+}
+
+
+void getParameters(char action)
+{
+	switch (action)
+	{
+	default:
+		break;
+	}
+
 }

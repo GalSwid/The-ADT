@@ -7,7 +7,11 @@
 class Manager
 {
 private:
+	int _numOfRoads;
+	int _numOfActions;
 
+	vector<Road> _roads;
+	vector< pair<int, int>> _heap;
 
 
 public:
@@ -15,7 +19,7 @@ public:
 
 	void Run();
 
-	void Init(vector< pair<int, int>> Heap, vector<Road> roads, int numOfRoads);
+	void Init();
 	void AddBridge(float h, int r);
 	int WhichRoad(float truckHeight);
 	void Print(int r);
