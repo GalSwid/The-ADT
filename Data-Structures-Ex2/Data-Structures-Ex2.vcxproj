@@ -139,7 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bridge.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Road.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Bridge.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="Road.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
