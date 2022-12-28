@@ -17,6 +17,9 @@ private:
 public:
 	Manager();
 
+	
+	void getNumOfRoadsAndActions();
+	
 	void Run();
 
 	void Init();

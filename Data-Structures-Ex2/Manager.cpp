@@ -68,6 +68,13 @@ void Manager::Print(int r)
 
 }
 
+void Manager::getNumOfRoadsAndActions() 
+{
+	cin >> _numOfRoads;
+	cout << endl;
+	cin >> _numOfActions;
+	cout << endl;
+}
 
 
 
