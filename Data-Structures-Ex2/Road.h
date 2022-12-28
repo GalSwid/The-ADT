@@ -1,18 +1,21 @@
 #pragma once
 
 #include <iostream>
+#include "List.h"
 using namespace std;
+
+
 
 class Road
 {
 private:
-	int num;
-	int MaxHeapIndex; // road index in MaxHeap array
-	List Bridge;
+	int _num;
+	int _MaxHeapIndex; // road index in MaxHeap array
+	List _bridgesList;
 
 
 public:
-	Road();
-	~Road();
-
+	Road(int num);
+	void setListHead(Bridge* ptr) { _bridgesList.setHead(ptr); }
+	void setMaxHeapIndex(int index) { _MaxHeapIndex = index; }
 };

@@ -1,5 +1,7 @@
+#include "Manager.h"
 #include <iostream>
 using namespace std;
+
 
 int main()
 {
@@ -9,12 +11,12 @@ int main()
 
 
 	// b
-	// AddBridge(float h, int r) - add bridge with height h on road r
+	// AddBridge(float h, int r) - add bridge with height h to road r
 	// worst case - O(logm)
 
 
 	// c
-	// WhiceRoad(float truckHeight) - prints number of road for truck which it's height <= bridge's height
+	// WhichRoad(float truckHeight) - prints number of road for truck which it's height <= bridge's height
 	// if multiple roads, prints the heighest bridge the truck can go under
 	// if the truck is too high, print 0
 	// worst case - teta(logm)
@@ -24,7 +26,7 @@ int main()
 	// Print(int r) - prints all bridges heights on the road
 	// Linear complex by num of roads
 	Manager manager;
-	manager.runProgram();
+	manager.Run();
 
 	return 0;
 }

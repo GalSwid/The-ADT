@@ -1,8 +1,7 @@
+#include "Road.h"
 
-Road::Road()
+Road::Road(int num)
 {
+	_num = num;
 }
 
-Road::~Road()
-{
-}
