@@ -15,10 +15,11 @@ private:
 
 
 public:
-	Road(int num);
-	void setListHead(Bridge* ptr) { _bridgesList.setHead(ptr); }
-	void setMaxHeapIndex(int index) { _MaxHeapIndex = index; };
-	Bridge* setListHead() { return _bridgesList.getHead(); }
+	Road(int num = 0);
+	List getList() { return _bridgesList; }
 	int getMaxHeapIndex() { return _MaxHeapIndex; }
 	int getnum() { return _num; }
+
+	void setListHead(Bridge* ptr) { _bridgesList.setHead(ptr); }
+	void setMaxHeapIndex(int index) { _MaxHeapIndex = index; };
 };

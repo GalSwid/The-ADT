@@ -17,16 +17,15 @@ private:
 	static int Left(int node);
 	static int Right(int node);
 	static int Parent(int node);
-	void FixHeap(int node);
 
 public:
 	MaxHeap(int max); // allocate memory
-	MaxHeap(pair<int, int> A[], int size); // turn A[] into heap
-	~MaxHeap();
+	MaxHeap(vector<pair<int, int>> A, int size); // turn A[] into heap
 
 	pair<int, int> Max();
 	pair<int, int> DeleteMax();
 
+	void FixHeap(int node);
 	void insert(pair<int, int> item);
 	void Swap(pair<int, int> node, pair<int, int> max);
 };
