@@ -1,6 +1,4 @@
 #pragma once
-
-
 #include <iostream>
 #include <utility>
 using namespace std;
@@ -24,7 +22,7 @@ public:
 	MaxHeap(int max); // allocate memory
 	MaxHeap(pair<int, int> A[], int size); // turn A[] into heap
 	~MaxHeap();
-
+	void Swap(pair<int, int> node, pair<int, int> max);
 	pair<int, int>* Max();
 	pair<int, int>* DeleteMax();
 	void insert(pair<int, int>* item);
