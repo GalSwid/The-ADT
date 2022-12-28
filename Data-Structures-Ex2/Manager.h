@@ -26,4 +26,7 @@ public:
 	void AddBridge(float h, int r);
 	int WhichRoad(float truckHeight);
 	void Print(int r);
+
+	void getParameters(char action, float* bridgeHeight, int* road, float* truckHeight);
+
 };
