@@ -140,12 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bridge.cpp" />
+    <ClCompile Include="Heap.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Road.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bridge.h" />
+    <ClInclude Include="Heap.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Road.h" />
   </ItemGroup>
