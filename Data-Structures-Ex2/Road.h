@@ -17,5 +17,7 @@ private:
 public:
 	Road(int num);
 	void setListHead(Bridge* ptr) { _bridgesList.setHead(ptr); }
-	void setMaxHeapIndex(int index) { _MaxHeapIndex = index; }
+	void setMaxHeapIndex(int index) { _MaxHeapIndex = index; };
+	int getMaxHeapIndex() { return _MaxHeapIndex; }
+	int getnum() { return _num; }
 };

@@ -49,7 +49,7 @@ void Manager::Init()
 		_heap[i].second = i; // value
 
 		_roads[i].setListHead(NULL);
-		_roads[i].setMaxHeapIndex(i)‏;
+		_roads[i].setMaxHeapIndex(i);
 	}
 }
 
