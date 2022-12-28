@@ -60,6 +60,13 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 
 }
 
+void Manager::getNumOfRoadsAndActions() 
+{
+	cin >> _numOfRoads;
+	cout << endl;
+	cin >> _numOfActions;
+	cout << endl;
+}
 
 void getParameters(char action)
 {
