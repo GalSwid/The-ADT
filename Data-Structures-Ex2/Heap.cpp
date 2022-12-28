@@ -20,40 +20,57 @@ MaxHeap::MaxHeap(pair<int, int> A[], int size)
 }
 
 
-static int Parent(int node)
+int MaxHeap::Parent(int node)
 {
 	return (node - 1) / 2;
 }
 
-static int Left(int node)
+int MaxHeap::Left(int node)
 {
 	return 2 * node + 1;
 }
 
-static int Right(int node)
+int MaxHeap::Right(int node)
 {
 	return 2 * node + 2;
 }
 
-void FixHeap(int node)
+void MaxHeap::FixHeap(int node)
 {
-	int l = Left(i);
-	int r = Right(i);
-	int largest = i;
-	if (l < heapSize && heap[l] > heap[i])
-		largest = l;
-	if (r < heapSize && heap[r] > heap[largest])
-		largest = r;
-	if (largest != i) {
-		swap(heap[i], heap[largest]);
-		FixHeap()
+	int max = node;
+	int l = Left(node);
+	int r = Right(node);
+
+	// find max among node. left and right.
+	if (l < heapSize && data[l].first > data[node].first)
+		max = l;
+
+	if (r < heapSize && data[r].first > data[max].first)
+		max = r;
+
+	if (max != node) {
+		Swap(data[node], data[max]);
+		FixHeap(max);
 	}
 }
 
 
-pair<int, int>* Max();
-pair<int, int>* DeleteMax();
-void insert(pair<int, int>* item);
+pair<int, int>* MaxHeap::Max()
+{
+
+}
+
+pair<int, int>* MaxHeap::DeleteMax()
+{
+
+
+}
+
+void MaxHeap::insert(pair<int, int>* item)
+{
+
+
+}
 
 
 MaxHeap::~MaxHeap()
