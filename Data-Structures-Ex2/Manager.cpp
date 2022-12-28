@@ -11,7 +11,6 @@ Manager::Manager()
 
 void Manager::Run()
 {
-
 	getNumOfRoadsAndActions();
 
 	for (int i = 0; i < _numOfActions; i++)
@@ -56,7 +55,16 @@ void Manager::Init()
 void Manager::AddBridge(float bridgeHeight, int roadIndex)
 {
 	// add birdgeHeight to roads[roadIndex].list.setHead
+	Bridge bridge(bridgeHeight, NULL);
+	_roads[roadIndex].setListHead(&bridge);
 
+	int index = _roads[roadIndex].getIndex();
+
+}
+
+
+void Manager::Print(int r)
+{
 
 }
 
@@ -67,6 +75,10 @@ void Manager::getNumOfRoadsAndActions()
 	cin >> _numOfActions;
 	cout << endl;
 }
+
+
+
+
 
 void Manager::getParameters(char action, float* bridgeHeight, int* road, float* truckHeight)
 {
@@ -82,5 +94,4 @@ void Manager::getParameters(char action, float* bridgeHeight, int* road, float* 
 	default:
 		break;
 	}
-
 }
