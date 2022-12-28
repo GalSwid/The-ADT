@@ -19,7 +19,6 @@ MaxHeap::MaxHeap(pair<int, int> A[], int size)
 		FixHeap(i);
 }
 
-
 int MaxHeap::Parent(int node)
 {
 	return (node - 1) / 2;
@@ -54,6 +53,13 @@ void MaxHeap::FixHeap(int node)
 	}
 }
 
+void MaxHeap::Swap(pair<int, int> node, pair<int, int> max)
+{
+	pair<int, int> temp;
+	temp = node;
+	node = max;
+	max = temp;
+}
 
 pair<int, int> MaxHeap::Max()
 {
