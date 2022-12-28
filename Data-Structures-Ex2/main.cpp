@@ -23,7 +23,8 @@ int main()
 	// d
 	// Print(int r) - prints all bridges heights on the road
 	// Linear complex by num of roads
-
+	Manager manager;
+	manager.runProgram();
 
 	return 0;
 }
