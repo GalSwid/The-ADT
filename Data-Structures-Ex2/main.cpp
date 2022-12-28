@@ -14,7 +14,7 @@ int main()
 
 
 	// c
-	// WhiceRoad(float h) - prints number of road for truck which it's height <= bridge's height
+	// WhiceRoad(float truckHeight) - prints number of road for truck which it's height <= bridge's height
 	// if multiple roads, prints the heighest bridge the truck can go under
 	// if the truck is too high, print 0
 	// worst case - teta(logm)
