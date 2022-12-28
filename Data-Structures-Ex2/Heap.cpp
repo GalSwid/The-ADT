@@ -55,21 +55,45 @@ void MaxHeap::FixHeap(int node)
 }
 
 
-pair<int, int>* MaxHeap::Max()
+pair<int, int> MaxHeap::Max()
 {
-
+	return data[0];
 }
 
-pair<int, int>* MaxHeap::DeleteMax()
+pair<int, int> MaxHeap::DeleteMax()
 {
+	if (heapSize < 1) {
+		cout << "empty heap";
+		return;
+	}
 
+	pair<int, int> max = data[0];
+	heapSize--;
 
+	data[0] = data[heapSize];
+	FixHeap(0);
+
+	return max;
 }
 
-void MaxHeap::insert(pair<int, int>* item)
+void MaxHeap::insert(pair<int, int> item)
 {
+	if (heapSize == maxSize)
+	{
+		cout << "heap is full" << endl;
+		return;
+	}
 
+	int i = heapSize;
+	heapSize++;
 
+	while ((i > 0) && data[Parent(i)].first < item.first)
+	{
+		data[i] = data[Parent(i)];
+		i = Parent(i);
+	}
+
+	data[i] = item;
 }
 
 

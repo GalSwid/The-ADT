@@ -25,8 +25,8 @@ public:
 	MaxHeap(pair<int, int> A[], int size); // turn A[] into heap
 	~MaxHeap();
 
-	pair<int, int>* Max();
-	pair<int, int>* DeleteMax();
-	void insert(pair<int, int>* item);
+	pair<int, int> Max();
+	pair<int, int> DeleteMax();
+	void insert(pair<int, int> item);
 };
 
