@@ -58,7 +58,7 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 	Bridge bridge(bridgeHeight, NULL);
 	_roads[roadIndex].setListHead(&bridge);
 
-	int index = _roads[roadIndex].getIndex();
+	int index = _roads[roadIndex].get();
 
 }
 
@@ -68,7 +68,7 @@ void Manager::Print(int r)
 
 }
 
-void Manager::getNumOfRoadsAndActions() 
+void Manager::getNumOfRoadsAndActions()
 {
 	cin >> _numOfRoads;
 	cout << endl;
