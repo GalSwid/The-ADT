@@ -63,7 +63,7 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 
 	_roads[roadIndex].setListHead(&bridge);
 
-	// error returns wrong index after " b 6.3 5 " input
+	// error - returns wrong index after " b 6.3 5 " input
 	int index = _roads[roadIndex].getMaxHeapIndex();
 
 	cout << "bridgeHeight: " << bridgeHeight << endl;
