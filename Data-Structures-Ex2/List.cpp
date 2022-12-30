@@ -12,7 +12,7 @@ List::~List()
 	while (curr != nullptr)
 	{
 		Bridge* next = curr->getNext();
-		delete curr;
+		//delete[] curr;
 		curr = next;
 	}
 }
@@ -49,10 +49,14 @@ void List::insertAfter(Bridge* prevNode, int height)
 
 void List::insertAtBeginning(Bridge* bridge)
 {
-	bridge->setHeight(_head->getHeight());
-	bridge->setNext(_head->getNext());
-	_head = bridge;
+	if (_head == NULL)
+		this->setHead(bridge);
+	else {
+		bridge->setNext(_head);
+		_head = bridge;
+	}
 }
+
 
 void List::printList()
 {

@@ -62,7 +62,8 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 	Bridge bridge(bridgeHeight, NULL);
 	MaxHeap Heap(_heapArray, _numOfRoads);
 
-	_roads[roadIndex - 1].setListHead(&bridge);
+	// error - list does not return after insert!!
+	_roads[roadIndex - 1].getList().insertAtBeginning(&bridge);
 
 	int index = _roads[roadIndex - 1].getMaxHeapIndex();
 
