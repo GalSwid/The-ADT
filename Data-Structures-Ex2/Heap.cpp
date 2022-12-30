@@ -2,16 +2,16 @@
 
 MaxHeap::MaxHeap(int max)
 {
-	data.resize(max);
+	data = new pair<int, int>[max];
 	maxSize = max;
 	heapSize = 0;
 	allocated = 1;
 }
 
-MaxHeap::MaxHeap(vector<pair<int, int>> A, int size)
+MaxHeap::MaxHeap(pair<int, int>* A, int size)
 {
 	heapSize = maxSize = size;
-	data.resize(size);
+	data = new pair<int, int>[size];
 
 	data = A;
 	allocated = 0;

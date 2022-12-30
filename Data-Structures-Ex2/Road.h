@@ -18,4 +18,5 @@ public:
 
 	void setListHead(Bridge* ptr) { _bridgesList.setHead(ptr); }
 	void setMaxHeapIndex(int index) { _MaxHeapIndex = index; };
+
 };
