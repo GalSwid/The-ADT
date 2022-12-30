@@ -9,15 +9,18 @@ private:
 	int _numOfRoads;
 	int _numOfActions;
 	vector<Road> _roads;
-	vector< pair<int, int>> _heap;
+	vector<pair<int, int>> _heapArray;
 
 public:
 	Manager();
-	void getNumOfRoadsAndActions();
 	void Run();
-	void Init();
-	void AddBridge(float h, int r);
-	int WhichRoad(float truckHeight);
-	void Print(int r);
+	void getNumOfRoadsAndActions();
 	void getParameters(char action, float* bridgeHeight, int* road, float* truckHeight);
+
+	void Init();
+	void AddBridge(float bridgeHeight, int roadIndex);
+	int WhichRoad(float truckHeight);
+	void Print(int road);
+
+
 };

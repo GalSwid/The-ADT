@@ -2,15 +2,16 @@
 
 MaxHeap::MaxHeap(int max)
 {
-	data = new pair<int, int>[max];
+	data.resize(max);
 	maxSize = max;
 	heapSize = 0;
 	allocated = 1;
 }
 
-MaxHeap::MaxHeap(pair<int, int> A[], int size)
+MaxHeap::MaxHeap(vector<pair<int, int>> A, int size)
 {
 	heapSize = maxSize = size;
+	data.resize(size);
 
 	data = A;
 	allocated = 0;
@@ -70,7 +71,7 @@ pair<int, int> MaxHeap::DeleteMax()
 {
 	if (heapSize < 1) {
 		cout << "empty heap";
-		return;
+		return { 0,0 };
 	}
 
 	pair<int, int> max = data[0];
@@ -103,9 +104,3 @@ void MaxHeap::insert(pair<int, int> item)
 }
 
 
-MaxHeap::~MaxHeap()
-{
-	if (allocated)
-		delete[] data;
-	data = NULL;
-}
