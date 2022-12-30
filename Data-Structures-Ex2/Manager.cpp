@@ -1,13 +1,9 @@
 ﻿#include "Manager.h"
 
-
-
 Manager::Manager()
 {
 
 }
-
-
 
 void Manager::Run()
 {
@@ -39,7 +35,6 @@ void Manager::Run()
 	}
 }
 
-
 void Manager::Init()
 {
 	for (int i = 0; i < _numOfRoads; i++)
@@ -62,7 +57,6 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 
 }
 
-
 void Manager::Print(int r)
 {
 
@@ -75,10 +69,6 @@ void Manager::getNumOfRoadsAndActions()
 	cin >> _numOfActions;
 	cout << endl;
 }
-
-
-
-
 
 void Manager::getParameters(char action, float* bridgeHeight, int* road, float* truckHeight)
 {
