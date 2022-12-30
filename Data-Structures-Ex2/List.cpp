@@ -47,6 +47,13 @@ void List::insertAfter(Bridge* prevNode, int height)
 	prevNode->setNext(newNode);
 }
 
+void List::insertAtBeginning(Bridge* bridge)
+{
+	bridge->setHeight(_head->getHeight());
+	bridge->setNext(_head->getNext());
+	_head = bridge;
+}
+
 void List::printList()
 {
 	Bridge* curr = _head;
