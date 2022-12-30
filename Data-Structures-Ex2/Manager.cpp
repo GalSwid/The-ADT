@@ -1,8 +1,10 @@
 ﻿#include "Manager.h"
+
 Manager::Manager()
 {
 	getNumOfRoadsAndActions();
-	_roads.resize(_numOfRoads);
+	_roads = new Road[_numOfRoads];
+	_heapArray = new pair<int, int>[_numOfRoads];
 }
 
 void Manager::Run()
@@ -30,7 +32,7 @@ void Manager::Run()
 			break;
 		case 'c':
 			res = WhichRoad(truckHeight);
-			cout << "Heighest bridge the truck can go under is: " << res << endl << endl;
+			cout << "Heighest road the truck can go under is road index: " << res + 1 << endl << endl;
 			break;
 		case 'd':
 			Print(road);
@@ -49,7 +51,7 @@ void Manager::Init()
 		pair<int, int> temp;
 		temp.first = 100; // key
 		temp.second = i; // value
-		_heapArray.push_back(temp);
+		_heapArray[i] = temp;
 
 		_roads[i].setListHead(NULL);
 		_roads[i].setMaxHeapIndex(i);
@@ -61,22 +63,20 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 	Bridge bridge(bridgeHeight, NULL);
 	MaxHeap Heap(_heapArray, _numOfRoads);
 
-	_roads[roadIndex].setListHead(&bridge);
+	_roads[roadIndex - 1].setListHead(&bridge);
 
-	// error - returns wrong index after " b 6.3 5 " input
-	int index = _roads[roadIndex].getMaxHeapIndex();
+	int index = _roads[roadIndex - 1].getMaxHeapIndex();
 
 	cout << "bridgeHeight: " << bridgeHeight << endl;
 	cout << "index: " << index << endl;
-	cout << "_heapArray[index].first: " << _heapArray[index].first;
+	cout << "_heapArray[index].first: " << _heapArray[index].first << endl << endl;
 	if (bridgeHeight < _heapArray[index].first)
 	{
 		pair<int, int> temp;
 		temp.first = bridgeHeight; // key
-		temp.second = roadIndex; // value
+		temp.second = roadIndex - 1; // value
 
-		_heapArray.push_back(temp);
-		cout << " size: " << _heapArray.size() << endl;
+		_heapArray[index] = temp;
 
 		Heap.FixHeap(index);
 	}
@@ -85,13 +85,11 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 
 int Manager::WhichRoad(float truckHeight)
 {
-	//MaxHeap Heap(_heapArray, _numOfRoads);
 	int max = _heapArray[0].first;
 
 	if (truckHeight < max)
 		return _heapArray[0].second;
 	else return 0;
-
 }
 
 

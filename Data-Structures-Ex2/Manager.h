@@ -2,7 +2,6 @@
 
 #include "Heap.h"
 #include "Road.h"
-#include <vector>
 
 class Manager
 {
@@ -10,8 +9,8 @@ private:
 	int _numOfRoads;
 	int _numOfActions;
 
-	vector<Road> _roads;
-	vector<pair<int, int>> _heapArray;
+	Road* _roads;
+	pair<int, int>* _heapArray;
 
 
 public:
