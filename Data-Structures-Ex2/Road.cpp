@@ -3,7 +3,7 @@
 Road::Road(int num)
 {
 	_num = num;
-	_bridgesList.makeEmpty();
+	_bridgesList = new List();
 	_MaxHeapIndex = 0;
 }
 

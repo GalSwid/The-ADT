@@ -27,28 +27,10 @@ bool List::isEmpty()
 	return _head == nullptr;
 }
 
-void List::deleteAfter(Bridge* toDeleteAfter)
+
+void List::insertAtBeginning(float bridgeHeight)
 {
-	if (!toDeleteAfter || !toDeleteAfter->getNext())
-		return;
-
-	Bridge* toDelete = toDeleteAfter->getNext();
-	toDeleteAfter->setNext(toDelete->getNext());
-	delete toDelete;
-}
-
-void List::insertAfter(Bridge* prevNode, int height)
-{
-	if (!prevNode)
-		return;
-
-	Bridge* newNode = new Bridge(height);
-	newNode->setNext(prevNode->getNext());
-	prevNode->setNext(newNode);
-}
-
-void List::insertAtBeginning(Bridge* bridge)
-{
+	Bridge* bridge = new Bridge(bridgeHeight, NULL);
 	if (_head == NULL)
 		this->setHead(bridge);
 	else {

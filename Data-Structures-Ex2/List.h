@@ -15,9 +15,7 @@ public:
 	void makeEmpty();
 	bool isEmpty();
 
-	void deleteAfter(Bridge* toDeleteAfter);
-	void insertAfter(Bridge* prevNode, int height);
-	void insertAtBeginning(Bridge* bridge);
+	void insertAtBeginning(float bridgeHeight);
 	void printList();
 
 	void setHead(Bridge* head) { _head = head; }

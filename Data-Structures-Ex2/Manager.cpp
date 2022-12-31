@@ -52,24 +52,20 @@ void Manager::Init()
 		temp.second = i; // value
 		_heapArray[i] = temp;
 
-		_roads[i].setListHead(NULL);
+		_roads[i].getList()->setHead(NULL);
 		_roads[i].setMaxHeapIndex(i);
 	}
 }
 
 void Manager::AddBridge(float bridgeHeight, int roadIndex)
 {
-	Bridge bridge(bridgeHeight, NULL);
 	MaxHeap Heap(_heapArray, _numOfRoads);
 
 	// error - list does not return after insert!!
-	_roads[roadIndex - 1].getList().insertAtBeginning(&bridge);
+	_roads[roadIndex - 1].getList()->insertAtBeginning(bridgeHeight);
 
 	int index = _roads[roadIndex - 1].getMaxHeapIndex();
 
-	cout << "bridgeHeight: " << bridgeHeight << endl;
-	cout << "index: " << index << endl;
-	cout << "_heapArray[index].first: " << _heapArray[index].first << endl << endl;
 	if (bridgeHeight < _heapArray[index].first)
 	{
 		pair<int, int> temp;
@@ -95,7 +91,7 @@ int Manager::WhichRoad(float truckHeight)
 
 void Manager::Print(int road)
 {
-	_roads[road].getList().printList();
+	_roads[road - 1].getList()->printList();
 }
 
 
