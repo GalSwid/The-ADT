@@ -9,7 +9,6 @@ Manager::Manager()
 
 void Manager::Run()
 {
-
 	for (int i = 0; i < _numOfActions; i++)
 	{
 		char action;
@@ -45,7 +44,7 @@ void Manager::Run()
 
 void Manager::Init()
 {
-	for (int i = 0; i < _numOfRoads; i++)
+	for (int i = 0; i < _numOfRoads-1; i++)
 	{
 		_heapArray[i].first = 100;	// key 
 		_heapArray[i].second = i;	// value
@@ -87,7 +86,7 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 
 int Manager::WhichRoad(float truckHeight)
 {
-	int max = _heapArray[0].first;
+	float max = _heapArray[0].first;
 
 	if (truckHeight < max)
 		return _heapArray[0].second + 1;

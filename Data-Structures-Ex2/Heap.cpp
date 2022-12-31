@@ -50,9 +50,7 @@ void MaxHeap::FixHeap(int node, Road* roads)
 
 	if (max != node) {
 		Swap(&data[node], &data[max]);
-		cout << "before: " << roads[node].getMaxHeapIndex() << " & " << roads[max].getMaxHeapIndex() << endl;
 		SwapRoads(&roads[node], &roads[max]);
-		cout << "after: " << roads[node].getMaxHeapIndex() << " & " << roads[max].getMaxHeapIndex() << endl;
 		FixHeap(max, roads);
 	}
 }
