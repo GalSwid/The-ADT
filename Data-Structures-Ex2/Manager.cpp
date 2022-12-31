@@ -4,7 +4,7 @@ Manager::Manager()
 {
 	getNumOfRoadsAndActions();
 	_roads = new Road[_numOfRoads];
-	_heapArray = new pair<int, int>[_numOfRoads];
+	_heapArray = new pair<float, int>[_numOfRoads];
 }
 
 void Manager::Run()
@@ -47,7 +47,7 @@ void Manager::Init()
 {
 	for (int i = 0; i < _numOfRoads; i++)
 	{
-		pair<int, int> temp;
+		pair<float, int> temp;
 		temp.first = 100; // key
 		temp.second = i; // value
 		_heapArray[i] = temp;
@@ -67,7 +67,7 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 
 	if (bridgeHeight < _heapArray[index].first)
 	{
-		pair<int, int> temp;
+		pair<float, int> temp;
 		temp.first = bridgeHeight; // key
 		temp.second = roadIndex - 1; // value
 

@@ -9,7 +9,7 @@ private:
 	int _numOfActions;
 
 	Road* _roads;
-	pair<int, int>* _heapArray;
+	pair<float, int>* _heapArray;
 
 public:
 	Manager();

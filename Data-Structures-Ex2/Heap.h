@@ -9,7 +9,7 @@ class Road;
 class MaxHeap
 {
 private:
-	pair<int, int>* data; // point to data pair - min height and number of road
+	pair<float, int>* data; // point to data pair - min height and number of road
 	int maxSize; // this is m 
 	int heapSize;
 	int allocated;
@@ -20,13 +20,13 @@ private:
 
 public:
 	MaxHeap(int max); // allocate memory
-	MaxHeap(pair<int, int>* A, int size); // turn A[] into heap
+	MaxHeap(pair<float, int>* A, int size); // turn A[] into heap
 
-	pair<int, int> Max();
-	pair<int, int> DeleteMax();
+	pair<float, int> Max();
+	pair<float, int> DeleteMax();
 
 	void FixHeap(int node);
-	void insert(pair<int, int> item);
-	void Swap(pair<int, int> node, pair<int, int> max);
+	void insert(pair<float, int> item);
+	void Swap(pair<float, int> node, pair<float, int> max);
 };
 

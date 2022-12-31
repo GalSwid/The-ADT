@@ -2,16 +2,16 @@
 
 MaxHeap::MaxHeap(int max)
 {
-	data = new pair<int, int>[max];
+	data = new pair<float, int>[max];
 	maxSize = max;
 	heapSize = 0;
 	allocated = 1;
 }
 
-MaxHeap::MaxHeap(pair<int, int>* A, int size)
+MaxHeap::MaxHeap(pair<float, int>* A, int size)
 {
 	heapSize = maxSize = size;
-	data = new pair<int, int>[size];
+	data = new pair<float, int>[size];
 
 	data = A;
 	allocated = 0;
@@ -54,27 +54,27 @@ void MaxHeap::FixHeap(int node)
 	}
 }
 
-void MaxHeap::Swap(pair<int, int> node, pair<int, int> max)
+void MaxHeap::Swap(pair<float, int> node, pair<float, int> max)
 {
-	pair<int, int> temp;
+	pair<float, int> temp;
 	temp = node;
 	node = max;
 	max = temp;
 }
 
-pair<int, int> MaxHeap::Max()
+pair<float, int> MaxHeap::Max()
 {
 	return data[0];
 }
 
-pair<int, int> MaxHeap::DeleteMax()
+pair<float, int> MaxHeap::DeleteMax()
 {
 	if (heapSize < 1) {
 		cout << "empty heap";
 		return { 0,0 };
 	}
 
-	pair<int, int> max = data[0];
+	pair<float, int> max = data[0];
 	heapSize--;
 
 	data[0] = data[heapSize];
@@ -83,7 +83,7 @@ pair<int, int> MaxHeap::DeleteMax()
 	return max;
 }
 
-void MaxHeap::insert(pair<int, int> item)
+void MaxHeap::insert(pair<float, int> item)
 {
 	if (heapSize == maxSize)
 	{

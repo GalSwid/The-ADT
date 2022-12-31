@@ -31,6 +31,7 @@ bool List::isEmpty()
 void List::insertAtBeginning(float bridgeHeight)
 {
 	Bridge* bridge = new Bridge(bridgeHeight, NULL);
+
 	if (_head == NULL)
 		this->setHead(bridge);
 	else {
@@ -53,6 +54,8 @@ void List::printList()
 		cout << curr->getHeight() << " ";
 		curr = curr->getNext();
 	}
+	cout << endl;
+
 }
 
 
