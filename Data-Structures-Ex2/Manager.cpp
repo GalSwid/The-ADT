@@ -32,7 +32,7 @@ void Manager::Run()
 			break;
 		case 'c':
 			res = WhichRoad(truckHeight);
-			cout << "Heighest road the truck can go under is road index: " << res + 1 << endl << endl;
+			cout << "Heighest road the truck can go under is road index: " << res << endl << endl;
 			break;
 		case 'd':
 			Print(road);
@@ -47,10 +47,8 @@ void Manager::Init()
 {
 	for (int i = 0; i < _numOfRoads; i++)
 	{
-		pair<float, int> temp;
-		temp.first = 100; // key
-		temp.second = i; // value
-		_heapArray[i] = temp;
+		_heapArray[i].first = 100;	// key 
+		_heapArray[i].second = i;	// value
 
 		_roads[i].getList()->setHead(NULL);
 		_roads[i].setMaxHeapIndex(i);
@@ -67,14 +65,15 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 
 	if (bridgeHeight < _heapArray[index].first)
 	{
-		pair<float, int> temp;
-		temp.first = bridgeHeight; // key
-		temp.second = roadIndex - 1; // value
-
-		_heapArray[index] = temp;
-
+		_heapArray[index].first = bridgeHeight;
 		Heap.FixHeap(index);
 	}
+
+	cout << "_heapArray: ";
+	for (int i = 0; i < 5; i++)
+		cout << " " << _heapArray[i].first;
+
+	cout << endl;
 }
 
 
@@ -83,7 +82,7 @@ int Manager::WhichRoad(float truckHeight)
 	int max = _heapArray[0].first;
 
 	if (truckHeight < max)
-		return _heapArray[0].second;
+		return _heapArray[0].second + 1;
 	else return 0;
 }
 

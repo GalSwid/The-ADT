@@ -49,17 +49,18 @@ void MaxHeap::FixHeap(int node)
 		max = r;
 
 	if (max != node) {
-		Swap(data[node], data[max]);
+		Swap(&data[node], &data[max]);
+		//roadsSwap(&roads[node], &roads[max]);
 		FixHeap(max);
 	}
 }
 
-void MaxHeap::Swap(pair<float, int> node, pair<float, int> max)
+void MaxHeap::Swap(pair<float, int>* node, pair<float, int>* max)
 {
-	pair<float, int> temp;
-	temp = node;
-	node = max;
-	max = temp;
+	pair<float, int> temp{ *node };
+
+	*node = *max;
+	*max = temp;
 }
 
 pair<float, int> MaxHeap::Max()

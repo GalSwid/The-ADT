@@ -27,6 +27,6 @@ public:
 
 	void FixHeap(int node);
 	void insert(pair<float, int> item);
-	void Swap(pair<float, int> node, pair<float, int> max);
+	void Swap(pair<float, int>* node, pair<float, int>* max);
 };
 

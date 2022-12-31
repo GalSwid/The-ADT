@@ -50,11 +50,12 @@ void List::printList()
 		return;
 	}
 
+	cout << "List: ";
 	while (curr != nullptr) {
 		cout << curr->getHeight() << " ";
 		curr = curr->getNext();
 	}
-	cout << endl;
+	cout << endl << endl;
 
 }
 
