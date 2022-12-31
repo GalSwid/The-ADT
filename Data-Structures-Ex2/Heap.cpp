@@ -1,4 +1,4 @@
-#include "Heap.h"
+﻿#include "Heap.h"
 
 MaxHeap::MaxHeap(int max)
 {
@@ -50,7 +50,9 @@ void MaxHeap::FixHeap(int node, Road* roads)
 
 	if (max != node) {
 		Swap(&data[node], &data[max]);
-		roadsSwap(&roads[node], &roads[max]);
+		cout << "before: " << roads[node].getMaxHeapIndex() << " & " << roads[max].getMaxHeapIndex() << endl;
+		SwapRoads(&roads[node], &roads[max]);
+		cout << "after: " << roads[node].getMaxHeapIndex() << " & " << roads[max].getMaxHeapIndex() << endl;
 		FixHeap(max, roads);
 	}
 }
@@ -63,10 +65,18 @@ void MaxHeap::Swap(pair<float, int>* node, pair<float, int>* max)
 	*max = temp;
 }
 
-pair<float, int> MaxHeap::Max()
+void MaxHeap::SwapRoads(Road* node, Road* max)
 {
-	return data[0];
+	Road temp{ *node };
+
+	*node = *max;
+	*max = temp;
 }
+
+//pair<float, int> MaxHeap::Max()
+//{
+//	return data[0];
+//}
 
 //pair<float, int> MaxHeap::DeleteMax()
 //{

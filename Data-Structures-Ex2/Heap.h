@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class Road;
+#include "Road.h"
 
 class MaxHeap
 {
@@ -22,11 +22,13 @@ public:
 	MaxHeap(int max); // allocate memory
 	MaxHeap(pair<float, int>* A, int size, Road* roads); // turn A[] into heap
 
-	pair<float, int> Max();
+	//pair<float, int> Max();
 	//pair<float, int> DeleteMax();
 
 	void FixHeap(int node, Road* roads);
 	void insert(pair<float, int> item);
 	void Swap(pair<float, int>* node, pair<float, int>* max);
+	void SwapRoads(Road* node, Road* max);
+
 };
 
