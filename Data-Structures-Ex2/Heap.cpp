@@ -8,7 +8,7 @@ MaxHeap::MaxHeap(int max)
 	allocated = 1;
 }
 
-MaxHeap::MaxHeap(pair<float, int>* A, int size)
+MaxHeap::MaxHeap(pair<float, int>* A, int size, Road* roads)
 {
 	heapSize = maxSize = size;
 	data = new pair<float, int>[size];
@@ -17,7 +17,7 @@ MaxHeap::MaxHeap(pair<float, int>* A, int size)
 	allocated = 0;
 
 	for (int i = size / 2 - 1; i >= 0; i--)
-		FixHeap(i);
+		FixHeap(i, roads);
 }
 
 int MaxHeap::Parent(int node)
@@ -35,7 +35,7 @@ int MaxHeap::Right(int node)
 	return 2 * node + 2;
 }
 
-void MaxHeap::FixHeap(int node)
+void MaxHeap::FixHeap(int node, Road* roads)
 {
 	int max = node;
 	int l = Left(node);
@@ -50,8 +50,8 @@ void MaxHeap::FixHeap(int node)
 
 	if (max != node) {
 		Swap(&data[node], &data[max]);
-		//roadsSwap(&roads[node], &roads[max]);
-		FixHeap(max);
+		roadsSwap(&roads[node], &roads[max]);
+		FixHeap(max, roads);
 	}
 }
 
@@ -68,21 +68,21 @@ pair<float, int> MaxHeap::Max()
 	return data[0];
 }
 
-pair<float, int> MaxHeap::DeleteMax()
-{
-	if (heapSize < 1) {
-		cout << "empty heap";
-		return { 0,0 };
-	}
-
-	pair<float, int> max = data[0];
-	heapSize--;
-
-	data[0] = data[heapSize];
-	FixHeap(0);
-
-	return max;
-}
+//pair<float, int> MaxHeap::DeleteMax()
+//{
+//	if (heapSize < 1) {
+//		cout << "empty heap";
+//		return { 0,0 };
+//	}
+//
+//	pair<float, int> max = data[0];
+//	heapSize--;
+//
+//	data[0] = data[heapSize];
+//	FixHeap(0);
+//
+//	return max;
+//}
 
 void MaxHeap::insert(pair<float, int> item)
 {

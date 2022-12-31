@@ -57,7 +57,7 @@ void Manager::Init()
 
 void Manager::AddBridge(float bridgeHeight, int roadIndex)
 {
-	MaxHeap Heap(_heapArray, _numOfRoads);
+	MaxHeap Heap(_heapArray, _numOfRoads, _roads);
 
 	_roads[roadIndex - 1].getList()->insertAtBeginning(bridgeHeight);
 
@@ -66,7 +66,7 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 	if (bridgeHeight < _heapArray[index].first)
 	{
 		_heapArray[index].first = bridgeHeight;
-		Heap.FixHeap(index);
+		Heap.FixHeap(index, _roads);
 	}
 
 	cout << "_heapArray: ";
