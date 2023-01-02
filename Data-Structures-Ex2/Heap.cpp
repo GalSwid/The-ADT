@@ -50,7 +50,7 @@ void MaxHeap::FixHeap(int node, Road* roads)
 
 	if (max != node) {
 		Swap(&data[node], &data[max]);
-		SwapRoads(&roads[node], &roads[max]);
+		//SwapRoads(&roads[node], &roads[max]);
 		FixHeap(max, roads);
 	}
 }

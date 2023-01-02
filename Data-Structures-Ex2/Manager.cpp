@@ -44,7 +44,7 @@ void Manager::Run()
 
 void Manager::Init()
 {
-	for (int i = 0; i < _numOfRoads-1; i++)
+	for (int i = 0; i < _numOfRoads; i++)
 	{
 		_heapArray[i].first = 100;	// key 
 		_heapArray[i].second = i;	// value
@@ -65,6 +65,12 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 	if (bridgeHeight < _heapArray[index].first)
 	{
 		_heapArray[index].first = bridgeHeight;
+		
+		cout << "_heapArray before: ";
+		for (int i = 0; i < 5; i++)
+			cout << " " << _heapArray[i].first;
+		cout << endl;
+
 		Heap.FixHeap(index, _roads);
 	}
 
