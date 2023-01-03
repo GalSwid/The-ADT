@@ -37,7 +37,7 @@ int MaxHeap::Right(int node)
 
 void MaxHeap::FixHeap(int node, Road* roads)
 {
-	int max = node;
+	int max;
 	int l = Left(node);
 	int r = Right(node);
 
@@ -50,8 +50,25 @@ void MaxHeap::FixHeap(int node, Road* roads)
 
 	if (max != node) {
 		Swap(&data[node], &data[max]);
-		//SwapRoads(&roads[node], &roads[max]);
+		SwapRoads(&roads[node], &roads[max]);
 		FixHeap(max, roads);
+	}
+}
+
+void Heap::fixHeap(int node, Road** arr) {
+	int max;
+	int Left = left(node);
+	int Right = right(node);
+	if ((Left < heapSize) && (heap[Left] > heap[node]))
+		max = Left;
+	else max = node;
+	if ((Right < heapSize) && (heap[Right] > heap[max]))
+		max = Right;
+	if (max != node) {
+		swap(heap[node], heap[max]); // problem
+		std::swap(arr[node], arr[max]);
+		print();
+		fixHeap(max, arr);
 	}
 }
 

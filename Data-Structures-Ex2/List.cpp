@@ -1,21 +1,12 @@
 #include "List.h"
 
-List::List(Bridge* head)
+List::List(Bridge* head, Bridge* tail)
 {
 	_head = head;
+	_tail = tail;
 }
 
-List::~List()
-{
-	Bridge* curr = _head;
 
-	while (curr != nullptr)
-	{
-		Bridge* next = curr->getNext();
-		//delete[] curr;
-		curr = next;
-	}
-}
 
 void List::makeEmpty()
 {
@@ -40,6 +31,19 @@ void List::insertAtBeginning(float bridgeHeight)
 	}
 }
 
+void List::insertDataToEndList(float bridgeHeight)
+{
+	Bridge* bridge = new Bridge(bridgeHeight, nullptr);
+	//Insert data to the end of the list
+	if (isEmpty())
+		_tail = _head = bridge;
+
+	else
+	{
+		_tail->setNext(bridge);
+		_tail = bridge;
+	}
+}
 
 void List::printList()
 {
@@ -59,4 +63,14 @@ void List::printList()
 
 }
 
+List::~List()
+{
+	Bridge* curr = _head;
 
+	while (curr != nullptr)
+	{
+		Bridge* next = curr->getNext();
+		//delete[] curr;
+		curr = next;
+	}
+}

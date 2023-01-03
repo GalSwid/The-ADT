@@ -8,14 +8,16 @@ class List
 {
 private:
 	Bridge* _head;
+	Bridge* _tail;
 
 public:
-	List(Bridge* head = nullptr);
+	List(Bridge* head = nullptr, Bridge* tail = nullptr);
 	~List();
 	void makeEmpty();
 	bool isEmpty();
 
 	void insertAtBeginning(float bridgeHeight);
+	void insertDataToEndList(float bridgeHeight);
 	void printList();
 
 	void setHead(Bridge* head) { _head = head; }
