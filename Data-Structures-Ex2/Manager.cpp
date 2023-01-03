@@ -22,9 +22,6 @@ void Manager::Run()
 
 		try
 		{
-
-
-
 			switch (action)
 			{
 			case 'a':
@@ -74,13 +71,8 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 
 	if (bridgeHeight < _heapArray[index].first)
 	{
+		// save the min bridge height
 		_heapArray[index].first = bridgeHeight;
-
-		cout << "_heapArray before: ";
-		for (int i = 0; i < 5; i++)
-			cout << " " << _heapArray[i].first;
-		cout << endl;
-
 		Heap.FixHeap(index, _roads);
 	}
 
@@ -93,7 +85,7 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 
 	cout << "_heapArray: ";
 	for (int i = 0; i < 5; i++)
-		cout << " " << _heapArray[i].first;
+		cout << " (" << _heapArray[i].first << "," << _heapArray[i].second << ")";
 
 	cout << endl;
 	cout << endl;
