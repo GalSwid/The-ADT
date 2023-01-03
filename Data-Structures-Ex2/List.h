@@ -16,7 +16,7 @@ public:
 	void makeEmpty();
 	bool isEmpty();
 
-	void insertAtBeginning(float bridgeHeight);
+	void insertDataToStartList(float bridgeHeight);
 	void insertDataToEndList(float bridgeHeight);
 	void printList();
 

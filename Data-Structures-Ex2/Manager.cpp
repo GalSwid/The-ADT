@@ -20,24 +20,34 @@ void Manager::Run()
 		cin >> action;
 		getParameters(action, &bridgeHeight, &road, &truckHeight);
 
-
-		switch (action)
+		try
 		{
-		case 'a':
-			Init();
-			break;
-		case 'b':
-			AddBridge(bridgeHeight, road);
-			break;
-		case 'c':
-			res = WhichRoad(truckHeight);
-			cout << "Heighest road the truck can go under is road index: " << res << endl << endl;
-			break;
-		case 'd':
-			Print(road);
-			break;
-		default:
-			break;
+
+
+
+			switch (action)
+			{
+			case 'a':
+				Init();
+				break;
+			case 'b':
+				AddBridge(bridgeHeight, road);
+				break;
+			case 'c':
+				res = WhichRoad(truckHeight);
+				cout << "Heighest road the truck can go under is road index: " << res << endl << endl;
+				break;
+			case 'd':
+				Print(road);
+				break;
+			default:
+				throw std::invalid_argument("invalid choice");
+				break;
+			}
+		}
+		catch (const std::invalid_argument& err)
+		{
+			cout << "invalid_argument: " << err.what() << endl;
 		}
 	}
 }
@@ -58,14 +68,14 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 {
 	MaxHeap Heap(_heapArray, _numOfRoads, _roads);
 
-	_roads[roadIndex - 1].getList()->insertAtBeginning(bridgeHeight);
+	_roads[roadIndex - 1].getList()->insertDataToStartList(bridgeHeight);
 
 	int index = _roads[roadIndex - 1].getMaxHeapIndex();
 
 	if (bridgeHeight < _heapArray[index].first)
 	{
 		_heapArray[index].first = bridgeHeight;
-		
+
 		cout << "_heapArray before: ";
 		for (int i = 0; i < 5; i++)
 			cout << " " << _heapArray[i].first;

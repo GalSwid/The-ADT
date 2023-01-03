@@ -19,7 +19,7 @@ bool List::isEmpty()
 }
 
 
-void List::insertAtBeginning(float bridgeHeight)
+void List::insertDataToStartList(float bridgeHeight)
 {
 	Bridge* bridge = new Bridge(bridgeHeight, NULL);
 
