@@ -35,7 +35,7 @@ void Manager::Run()
 				break;
 			case 'c':
 				res = WhichRoad(truckHeight);
-				cout << "Heighest road the truck can go under is road index: " << res << endl << endl;
+				cout << "Truck can go under road with index: " << res << endl << endl;
 				break;
 			case 'd':
 				Print(road);
@@ -54,7 +54,6 @@ void Manager::Run()
 
 void Manager::Init()
 {
-	// starting from 1 and not 0
 	for (int i = 0; i < _numOfRoads; i++)
 	{
 		_heapArray[i].first = 100;	// min 
@@ -79,17 +78,17 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 		_heapArray[index].first = bridgeHeight;
 		_ManagerHeap.FixHeap(index, _roads);
 	}
-	else cout << bridgeHeight << " is higher than " << _heapArray[index].first << endl;
+	else cout << endl << bridgeHeight << " is higher than " << _heapArray[index].first << endl;
 
 	cout << "_roads: ";
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < _numOfRoads; i++)
 	{
 		cout << "  " << _roads[i].getMaxHeapIndex();
 	}
 	cout << endl;
 
 	cout << "_heapArray: ";
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < _numOfRoads; i++)
 		cout << " (" << _heapArray[i].first << "," << _heapArray[i].second << ")";
 
 	cout << endl;
@@ -103,6 +102,7 @@ int Manager::WhichRoad(float truckHeight)
 
 	if (truckHeight < max)
 		return _heapArray[0].second + 1;
+
 	else return 0;
 }
 
@@ -139,3 +139,4 @@ void Manager::getParameters(char action, float* bridgeHeight, int* road, float* 
 		break;
 	}
 }
+
