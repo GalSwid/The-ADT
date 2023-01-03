@@ -41,7 +41,6 @@ void MaxHeap::FixHeap(int node, Road* roads)
 	int l = Left(node);
 	int r = Right(node);
 
-	// find max among node. left and right.
 	if (l < heapSize && data[l].first > data[node].first)
 		max = l;
 
@@ -50,7 +49,8 @@ void MaxHeap::FixHeap(int node, Road* roads)
 
 	if (max != node) {
 		Swap(&data[node], &data[max]);
-		SwapRoads(&roads[node], &roads[max]);
+		SwapRoadsIndices(&roads[node], &roads[max]);
+
 		FixHeap(max, roads);
 	}
 }
@@ -64,12 +64,13 @@ void MaxHeap::Swap(pair<float, int>* node, pair<float, int>* max)
 	*max = temp;
 }
 
-void MaxHeap::SwapRoads(Road* node, Road* max)
+void MaxHeap::SwapRoadsIndices(Road* node, Road* max)
 {
 	Road temp{ *node };
+	int tempIndex = temp.getMaxHeapIndex();
 
-	*node = *max;
-	*max = temp;
+	node->setMaxHeapIndex(max->getMaxHeapIndex());
+	max->setMaxHeapIndex(temp.getMaxHeapIndex());
 }
 
 //pair<float, int> MaxHeap::Max()
