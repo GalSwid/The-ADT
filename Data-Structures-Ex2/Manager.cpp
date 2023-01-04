@@ -39,13 +39,13 @@ void Manager::Run()
 				Print(road);
 				break;
 			default:
-				throw std::invalid_argument("invalid choice");
+				throw std::invalid_argument("wrong input");
 				break;
 			}
 		}
 		catch (const std::invalid_argument& err)
 		{
-			cout << "invalid_argument: " << err.what() << endl;
+			cout << err.what() << endl;
 		}
 	}
 }
@@ -67,7 +67,7 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 {
 	_roads[roadIndex - 1].getList()->insertDataToStartList(bridgeHeight); // insert 6.3 to bridge list of road 5
 
-	int index = _roads[roadIndex - 1].getMaxHeapIndex(); // 1
+	int index = _roads[roadIndex - 1].getMaxHeapIndex();
 	/*cout << "index: " << index << endl;
 	cout << "heapIndex: " << _heap->data[index].second << endl;
 
