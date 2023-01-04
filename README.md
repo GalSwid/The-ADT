@@ -5,18 +5,18 @@ given m parallel roads that connect the two cities.
 The roads do not intersect, and bridges may be built on the roads at any time. 
 The number of bridges that can be built on each road is unlimited, and the height of any bridge can be any positive real number.
 
-### Getting Started
+## Getting Started
 
 You will need a C++ compiler to build and run this project.
 
-### Installing
+## Installing
 
 Clone the repository to your local machine:
 
 git clone https://github.com/[USERNAME]/best-route-finder.git
 
 
-## Initiate
+### Initiate
 - The efficiency of the operation is O(m) in the worst case.
 - // m == number of roads 
 
@@ -39,7 +39,7 @@ void Init()
 - It sets the minimum value of _heap to 100, sets the road number to i, and increments the heap size. 
 - It also sets the head of the list for each road to NULL and sets the maximum heap index for each road to i.
 
-## Add New Bridge
+### Add New Bridge
 - The efficiency of the operation is O(log m) in the worst case.
 - // m == number of roads 
 
@@ -61,7 +61,7 @@ void AddBridge(float bridgeHeight, int roadIndex)
 - It inserts the new bridge height to the start of the list for the specified road and retrieves the maximum heap index for that road. 
 - If the new bridge height is less than the minimum value in the heap, it updates the minimum value and calls the FixHeap function to update the heap.
 
-## The Best Road
+### The Best Road
 - The efficiency of the operation is O(1) in the worst case.
 
 ```cpp
