@@ -8,7 +8,7 @@ private:
 	int _numOfRoads;
 	int _numOfActions;
 
-	MaxHeap _heap; // error: send params?
+	MaxHeap* _heap; // error: send params?
 	Road* _roads; // error: change to Road** ?
 	//pair<float, int>* _heapArray;
 

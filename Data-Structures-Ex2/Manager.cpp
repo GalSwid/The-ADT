@@ -1,13 +1,15 @@
 ﻿#include "Manager.h"
 
+
 Manager::Manager()
 {
 	getNumOfRoadsAndActions();
 	_roads = new Road[_numOfRoads];
-	_heap.data = new pair<float, int>[_numOfRoads];
 
 	// initiate global Heap 
-	MaxHeap _heap(_heap.data, _numOfRoads, _roads);
+	//MaxHeap _heap(_heap.data, _numOfRoads, _roads);
+	//_heap(_numOfRoads);
+	_heap = new MaxHeap(_numOfRoads);
 }
 
 void Manager::Run()
@@ -56,8 +58,12 @@ void Manager::Init()
 {
 	for (int i = 0; i < _numOfRoads; i++)
 	{
-		_heap.data[i].first = 100;	// min 
-		_heap.data[i].second = i;	// road num
+		pair<float, int> temp;
+		temp.first = 100; // min
+		temp.second = i;   // road number
+		//_heap.data[i].first = 100;	// min 
+		//_heap.data[i].second = i;	// road num
+		_heap->insert(temp);
 
 		_roads[i].getList()->setHead(NULL);
 		_roads[i].setMaxHeapIndex(i);
@@ -73,23 +79,29 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 
 	int index = _roads[roadIndex - 1].getMaxHeapIndex();
 	cout << "index: " << index << endl;
-	if (bridgeHeight < _heap.data[index].first)
-	{
-		_heap.data[index].first = bridgeHeight;
-		_heap.FixHeap(index, _roads);
-	}
-	else cout << endl << bridgeHeight << " is higher than " << _heap.data[index].first << endl;
 
 	cout << "_roads: ";
 	for (int i = 0; i < _numOfRoads; i++)
 	{
 		cout << "  " << _roads[i].getMaxHeapIndex();
 	}
-	cout << endl;
 
-	cout << "_heapArray: ";
+	cout << endl;
+	if (bridgeHeight < _heap->data[index].first)
+	{
+		_heap->data[index].first = bridgeHeight;
+		cout << endl << "heap before: ";
+		for (int i = 0; i < _numOfRoads; i++)
+			cout << " (" << _heap->data[i].first << "," << _heap->data[i].second << ")";
+		cout << endl;
+		_heap->FixHeap(index, _roads);
+	}
+	else cout << endl << bridgeHeight << " is higher than " << _heap->data[index].first << endl;
+
+
+	cout << "heap after: ";
 	for (int i = 0; i < _numOfRoads; i++)
-		cout << " (" << _heap.data[i].first << "," << _heap.data[i].second << ")";
+		cout << " (" << _heap->data[i].first << "," << _heap->data[i].second << ")";
 
 	cout << endl;
 	cout << endl;
@@ -98,10 +110,10 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 
 int Manager::WhichRoad(float truckHeight)
 {
-	float max = _heap.data[0].first;
+	float max = _heap->data[0].first;
 
 	if (truckHeight < max)
-		return _heap.data[0].second + 1;
+		return _heap->data[0].second + 1;
 
 	else return 0;
 }
