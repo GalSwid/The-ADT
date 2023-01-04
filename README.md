@@ -12,6 +12,7 @@ You will need a C++ compiler to build and run this project.
 ### Installing
 
 Clone the repository to your local machine:
+
 git clone https://github.com/[USERNAME]/best-route-finder.git
 
 
@@ -30,6 +31,7 @@ void Init()
 		_roads[i].setMaxHeapIndex(i);
 	}
 }
+```
 
 - This code initializes the data structures used in the project. 
 - It sets the minimum value of _heap to 100, sets the road number to i, and increments the heap size. 
@@ -49,6 +51,7 @@ void AddBridge(float bridgeHeight, int roadIndex)
 		_heap->FixHeap(_heap->data[index].second, _roads);
 	}
 }
+```
 
 - This code adds a new bridge to the specified road and updates the minimum height value in the heap data structure if necessary. 
 - It inserts the new bridge height to the start of the list for the specified road and retrieves the maximum heap index for that road. 
@@ -66,6 +69,7 @@ int WhichRoad(float truckHeight)
 
 	else return 0;
 }
+```
 
 - This code determines the best road for a truck to take given the truck's height. 
 - It retrieves the minimum value in the heap data structure and checks if the truck's height is less than this value. 
