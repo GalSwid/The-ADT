@@ -1,4 +1,4 @@
-# ADT - Roads & Bridges
+# Data Structure Assignment
 This project finds the best route for a truck to travel between city A and city B, 
 given m parallel roads that connect the two cities. 
 The roads do not intersect, and bridges may be built on the roads at any time. 
