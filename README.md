@@ -14,7 +14,7 @@ You will need a C++ compiler to build and run this project.
 
 Clone the repository to your local machine:
 
-git clone https://github.com/[USERNAME]/best-route-finder.git
+git clone https://github.com/GalSwid/best-route-finder.git
 
 
 ## Initiate
