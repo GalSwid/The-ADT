@@ -13,6 +13,7 @@ You will need a C++ compiler to build and run this project.
 ## Installing
 
 Clone the repository to your local machine:
+
 git clone https://github.com/[USERNAME]/best-route-finder.git
 
 
@@ -80,3 +81,5 @@ int WhichRoad(float truckHeight)
 - It retrieves the minimum value in the heap data structure and checks if the truck's height is less than this value. 
 - If it is, it returns the road number (which is the second value in the heap data structure) plus 1. 
 - If the truck's height is not less than the minimum value in the heap, it returns 0.
+
+##### Made by [Gal Swid](https://github.com/GalSwid) & [Ori Nurieli](https://github.com/orinurieli)  
