@@ -5,10 +5,6 @@ Manager::Manager()
 {
 	getNumOfRoadsAndActions();
 	_roads = new Road[_numOfRoads];
-
-	// initiate global Heap 
-	//MaxHeap _heap(_heap.data, _numOfRoads, _roads);
-	//_heap(_numOfRoads);
 	_heap = new MaxHeap(_numOfRoads);
 }
 
@@ -43,7 +39,7 @@ void Manager::Run()
 				Print(road);
 				break;
 			default:
-				throw std::invalid_argument("invalid choice");
+				throw std::invalid_argument("wrong input");
 				break;
 			}
 		}
@@ -63,7 +59,7 @@ void Manager::Init()
 		temp.second = i;   // road number
 		//_heap.data[i].first = 100;	// min 
 		//_heap.data[i].second = i;	// road num
-		_heap->insert(temp);
+		_heap->insert(temp, _roads);
 
 		_roads[i].getList()->setHead(NULL);
 		_roads[i].setMaxHeapIndex(i);
@@ -73,12 +69,12 @@ void Manager::Init()
 void Manager::AddBridge(float bridgeHeight, int roadIndex)
 {
 	// why create new heap every addBridge() ?
-	//MaxHeap Heap(_heapArray, _numOfRoads, _roads);
+	//MaxHeap Heap(_heap->data, _numOfRoads, _roads);
 
 	_roads[roadIndex - 1].getList()->insertDataToStartList(bridgeHeight);
 
 	int index = _roads[roadIndex - 1].getMaxHeapIndex();
-	cout << "index: " << index << endl;
+	cout << "index: " << roadIndex - 1 << endl;
 
 	cout << "_roads: ";
 	for (int i = 0; i < _numOfRoads; i++)

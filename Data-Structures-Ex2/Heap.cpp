@@ -99,7 +99,7 @@ void MaxHeap::SwapRoadsIndices(Road* node, Road* max)
 //	return max;
 //}
 
-void MaxHeap::insert(pair<float, int> item)
+void MaxHeap::insert(pair<float, int> item, Road* road)
 {
 	if (heapSize == maxSize)
 	{
@@ -117,6 +117,7 @@ void MaxHeap::insert(pair<float, int> item)
 	}
 
 	data[i] = item;
+	//road[(item.second) - 1] = data[item.second].second;
 }
 
 
