@@ -17,6 +17,8 @@ git clone https://github.com/[USERNAME]/best-route-finder.git
 
 
 ## Initiate
+- The efficiency of the operation is O(m) in the worst case.
+- // m == number of roads 
 
 ```cpp
 void Init()
@@ -38,6 +40,8 @@ void Init()
 - It also sets the head of the list for each road to NULL and sets the maximum heap index for each road to i.
 
 ## Add New Bridge
+- The efficiency of the operation is O(log m) in the worst case.
+- // m == number of roads 
 
 ```cpp
 void AddBridge(float bridgeHeight, int roadIndex)
@@ -58,6 +62,7 @@ void AddBridge(float bridgeHeight, int roadIndex)
 - If the new bridge height is less than the minimum value in the heap, it updates the minimum value and calls the FixHeap function to update the heap.
 
 ## The Best Road
+- The efficiency of the operation is O(1) in the worst case.
 
 ```cpp
 int WhichRoad(float truckHeight)
