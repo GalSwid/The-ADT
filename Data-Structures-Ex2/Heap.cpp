@@ -43,18 +43,19 @@ void MaxHeap::FixHeap(int node, Road* roads)
 	int l = Left(node);
 	int r = Right(node);
 
+	/*for (int i = 0; i < 5; i++)
+		cout << " data[" << i << "] = " << " (" << data[i].first << "," << data[i].second << ")" << endl;*/
+
 	if (l < heapSize && data[l].first > data[node].first)
 		max = l;
 
 	if (r < heapSize && data[r].first > data[max].first)
 		max = r;
 
-	cout << endl << "FixHeap with root: " << node << " and max: " << max << endl << endl;
+	//cout << " node: " << node << " max: " << max << endl << endl;
 	if (max != node) {
-		cout << endl << endl << "swap in fix heap" << endl << endl;
 		Swap(&data[node], &data[max]);
 		SwapRoadsIndices(&roads[node], &roads[max]);
-		cout << endl << "here" << endl << endl;
 		FixHeap(max, roads);
 	}
 }
