@@ -37,8 +37,6 @@ int MaxHeap::Right(int node)
 
 void MaxHeap::FixHeap(int node, Road* roads)
 {
-	// error: doesnt swap because _heapArray should be _data
-	// and stored inside MaxHeap
 	int max = node;
 	int l = Left(node);
 	int r = Right(node);
@@ -56,6 +54,8 @@ void MaxHeap::FixHeap(int node, Road* roads)
 	if (max != node) {
 		Swap(&data[node], &data[max]);
 		SwapRoadsIndices(&roads[node], &roads[max]);
+		//roads[node - 1].setMaxHeapIndex(data[node - 1].second);
+		//roads[max - 1].setMaxHeapIndex(data[max - 1].second);
 		FixHeap(max, roads);
 	}
 }
