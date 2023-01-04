@@ -58,12 +58,12 @@ void Manager::Init()
 {
 	for (int i = 0; i < _numOfRoads; i++)
 	{
-		pair<float, int> temp;
-		temp.first = 100; // min
-		temp.second = i;   // road number
-		//_heap.data[i].first = 100;	// min 
-		//_heap.data[i].second = i;	// road num
-		_heap->insert(temp);
+		//pair<float, int> temp;
+		//temp.first = 100; // min
+		//temp.second = i;   // road number
+		_heap->data[i].first = 100;	// min 
+		_heap->data[i].second = i;	// road num
+		_heap->heapSize++;
 
 		_roads[i].getList()->setHead(NULL);
 		_roads[i].setMaxHeapIndex(i);
@@ -75,26 +75,28 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 	// why create new heap every addBridge() ?
 	//MaxHeap Heap(_heapArray, _numOfRoads, _roads);
 
-	_roads[roadIndex - 1].getList()->insertDataToStartList(bridgeHeight);
+	// 6.3  ,  5
+	_roads[roadIndex - 1].getList()->insertDataToStartList(bridgeHeight); // insert 6.3 to bridge list of road 5
 
-	int index = _roads[roadIndex - 1].getMaxHeapIndex();
+	int index = _roads[roadIndex - 1].getMaxHeapIndex(); // 1
 	cout << "index: " << index << endl;
+	cout << "heapIndex: " << _heap->data[index].second << endl;
 
 	cout << "_roads: ";
 	for (int i = 0; i < _numOfRoads; i++)
-	{
 		cout << "  " << _roads[i].getMaxHeapIndex();
-	}
 
 	cout << endl;
-	if (bridgeHeight < _heap->data[index].first)
+	if (bridgeHeight < _heap->data[_heap->data[index].second].first)
 	{
-		_heap->data[index].first = bridgeHeight;
+		_heap->data[_heap->data[index].second].first = bridgeHeight;
+
 		cout << endl << "heap before: ";
 		for (int i = 0; i < _numOfRoads; i++)
 			cout << " (" << _heap->data[i].first << "," << _heap->data[i].second << ")";
 		cout << endl;
-		_heap->FixHeap(index, _roads);
+
+		_heap->FixHeap(_heap->data[index].second, _roads);
 	}
 	else cout << endl << bridgeHeight << " is higher than " << _heap->data[index].first << endl;
 
