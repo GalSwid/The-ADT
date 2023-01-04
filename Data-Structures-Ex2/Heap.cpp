@@ -40,7 +40,6 @@ void MaxHeap::FixHeap(int node, Road* roads)
 	// error: doesnt swap because _heapArray should be _data
 	// and stored inside MaxHeap
 	int max = node;
-	cout << endl << "FixHeap with root: " << node << " and max: " << max << endl << endl;
 	int l = Left(node);
 	int r = Right(node);
 
@@ -50,6 +49,7 @@ void MaxHeap::FixHeap(int node, Road* roads)
 	if (r < heapSize && data[r].first > data[max].first)
 		max = r;
 
+	cout << endl << "FixHeap with root: " << node << " and max: " << max << endl << endl;
 	if (max != node) {
 		cout << endl << endl << "swap in fix heap" << endl << endl;
 		Swap(&data[node], &data[max]);
