@@ -19,8 +19,9 @@ git clone https://github.com/galswid/The-ADT.git
 ## what you need to insert in the exe file
 
 Insert line by line:
-1. number of roads (suppose that number of actions is 2)
+1. number of roads (suppose that number of roads is 2)
 2. number of actions (suppose that number of actions is 2)
+
 now the first action must be "Init" - one and only
 after that, insert actions, for example;
 3. a
