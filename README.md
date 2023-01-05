@@ -22,10 +22,10 @@ Insert line by line:
 1. number of roads (suppose that number of roads is 2)
 2. number of actions (suppose that number of actions is 2)
 
-now the first action must be "Init" - one and only
-after that, insert actions, for example;
+now the first action must be "Init" - one and only.
+after that, continue to insert actions, for example;
 
-3. a
+3. a 
 4. b 2.5 1
 
 then press enter to continue..
