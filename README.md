@@ -24,6 +24,7 @@ Insert line by line:
 
 now the first action must be "Init" - one and only
 after that, insert actions, for example;
+
 3. a
 4. b 2.5 1
 
