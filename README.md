@@ -16,21 +16,21 @@ Clone the repository to your local machine:
 
 git clone https://github.com/galswid/The-ADT.git
 
-## what you need to insert in the exe file
+## Instructions
 
 Insert line by line:
-1. number of roads (suppose that number of roads is 2)
-2. number of actions (suppose that number of actions is 2)
+1. Number of roads (suppose that number of roads is 2)
+2. Number of actions (suppose that number of actions is 2)
 
-now the first action must be "Init" - one and only.
-after that, continue to insert actions, for example:
+Now the first action must be "Init" - one and only.
+After that, continue to insert actions, for example:
 
 3. a 
 4. b 2.5 1
 
-then press enter to continue..
+Then press enter to continue..
 
-note: Init - a, AddBridge(float, int) - b, WhichRoad(float) - c, Print(int) - d
+Note: Init - a, AddBridge(float, int) - b, WhichRoad(float) - c, Print(int) - d
 
 ## Initiate
 - The efficiency of the operation is O(m) in the worst case.
