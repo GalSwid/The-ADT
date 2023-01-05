@@ -14,8 +14,22 @@ You will need a C++ compiler to build and run this project.
 
 Clone the repository to your local machine:
 
-git clone https://github.com/GalSwid/The-ADT.git
+git clone https://github.com/galswid/The-ADT.git
 
+## what you need to insert in the exe file
+
+insert line by line:
+1. number of roads
+2. number of actions (Init - a, AddBridge(float, int) - b, WhichRoad(float) - c, Print(int) - d)
+now the first action must be "Init" - one and only
+after that, insert actions, for example;
+3. b 2.5 4
+.
+.
+.
+number of actions. _____
+
+then press enter to continue..
 
 ## Initiate
 - The efficiency of the operation is O(m) in the worst case.
