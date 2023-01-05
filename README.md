@@ -23,7 +23,7 @@ Insert line by line:
 2. number of actions (suppose that number of actions is 2)
 
 now the first action must be "Init" - one and only.
-after that, continue to insert actions, for example;
+after that, continue to insert actions, for example:
 
 3. a 
 4. b 2.5 1
