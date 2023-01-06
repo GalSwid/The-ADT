@@ -1,10 +1,9 @@
 #include "Road.h"
 
-Road::Road(int num)
+Road::Road()
 {
-	_num = num;
 	_bridgesList = new List();
-	_MaxHeapIndex = 0;
+	_maxHeapIndex = 0;
 }
 
 

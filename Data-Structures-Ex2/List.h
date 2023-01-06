@@ -14,12 +14,12 @@ public:
 	List(Bridge* head = nullptr, Bridge* tail = nullptr);
 	~List();
 	void makeEmpty();
-	bool isEmpty();
-
+	bool isEmpty() const;
 	void insertDataToStartList(float bridgeHeight);
 	void insertDataToEndList(float bridgeHeight);
-	void printList();
-
+	void printList() const;
 	void setHead(Bridge* head) { _head = head; }
 	Bridge* getHead() const { return _head; }
+	void setTail(Bridge* tail) { _tail = tail; }
+	Bridge* getTail() const { return _tail; }
 };

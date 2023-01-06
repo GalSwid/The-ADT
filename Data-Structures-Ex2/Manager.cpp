@@ -1,52 +1,58 @@
 ﻿#include "Manager.h"
 
-
-Manager::Manager()
-{
-	getNumOfRoadsAndActions();
-	_roads = new Road[_numOfRoads];
-	_heap = new MaxHeap(_numOfRoads);
-}
-
 void Manager::Run()
 {
-	for (int i = 0; i < _numOfActions; i++)
+	try
 	{
-		char action;
-		int res;
-		float bridgeHeight = 0;
-		int road = 0;
-		float truckHeight = 0;
+		getNumOfRoadsAndActions();
+		_roads = new Road[_numOfRoads];
+		_heap = new MaxHeap(_numOfRoads);
 
-		cin >> action;
-		getParameters(action, &bridgeHeight, &road, &truckHeight);
-
-		try
+		for (int i = 0; i < _numOfActions; i++)
 		{
+			char action;
+			float bridgeHeight = 0;
+			int road = 0;
+			float truckHeight = 0;
+
+			cin >> action;
+			if (i == 0 && action != 'a')
+				throw std::invalid_argument("wrong input");
+			if (i !=0 && action == 'a')
+				throw std::invalid_argument("wrong input");
+
 			switch (action)
 			{
 			case 'a':
 				Init();
 				break;
 			case 'b':
+				cin >> bridgeHeight >> road;
+				if (!isValidInput(road, 1, _numOfRoads) || bridgeHeight <= 0)
+					throw std::invalid_argument("wrong input");
 				AddBridge(bridgeHeight, road);
 				break;
 			case 'c':
-				res = WhichRoad(truckHeight);
-				cout << "Truck can go under road with index: " << res << endl << endl;
+				cin >> truckHeight;
+				if (truckHeight <= 0)
+					throw std::invalid_argument("wrong input");
+				WhichRoad(truckHeight);
 				break;
 			case 'd':
+				cin >> road;
+				if (!isValidInput(road, 1, _numOfRoads))
+					throw std::invalid_argument("wrong input");
 				Print(road);
 				break;
 			default:
 				throw std::invalid_argument("wrong input");
-				break;
 			}
 		}
-		catch (const std::invalid_argument& err)
-		{
-			cout << err.what() << endl;
-		}
+	}
+	catch (const std::invalid_argument& err)
+	{
+		cout << err.what() << endl;
+		exit(1);
 	}
 }
 
@@ -54,61 +60,56 @@ void Manager::Init()
 {
 	for (int i = 0; i < _numOfRoads; i++)
 	{
-		_heap->data[i].first = 100;	// min 
-		_heap->data[i].second = i;	// road num
-		_heap->heapSize++;
+		_heap->_data[i].minHeight = FLT_MAX;	// min 
+		_heap->_data[i].roadNum = i;	// road num
+		_heap->_heapSize++;
 
-		_roads[i].getList()->setHead(NULL);
+		_roads[i].getList()->setHead(nullptr);
 		_roads[i].setMaxHeapIndex(i);
 	}
 }
 
 void Manager::AddBridge(float bridgeHeight, int roadIndex)
 {
-	_roads[roadIndex - 1].getList()->insertDataToStartList(bridgeHeight); // insert 6.3 to bridge list of road 5
+	_roads[roadIndex - 1].getList()->insertDataToStartList(bridgeHeight);
 
 	int index = _roads[roadIndex - 1].getMaxHeapIndex();
-	/*cout << "index: " << index << endl;
-	cout << "heapIndex: " << _heap->data[index].second << endl;
-
+	cout << "heapIndex: " << _heap->_data[index].roadNum + 1 << endl;
 	cout << "_roads: ";
 	for (int i = 0; i < _numOfRoads; i++)
-		cout << "  " << _roads[i].getMaxHeapIndex();
-
-	cout << endl;*/
-	if (bridgeHeight < _heap->data[_heap->data[index].second].first)
+		cout << "  " << _roads[i].getMaxHeapIndex() + 1;
+	cout << endl;
+	if (bridgeHeight < _heap->_data[_heap->_data[index].roadNum].minHeight)
 	{
-		_heap->data[_heap->data[index].second].first = bridgeHeight;
-
-		//cout << endl << "heap before: ";
-		//for (int i = 0; i < _numOfRoads; i++)
-		//	cout << " (" << _heap->data[i].first << "," << _heap->data[i].second << ")";
-		//cout << endl;
-
-		_heap->FixHeap(_heap->data[index].second, _roads);
+		_heap->_data[_heap->_data[index].roadNum].minHeight = bridgeHeight;
+		cout << endl << "heap before: ";
+		for (int i = 0; i < _numOfRoads; i++)
+		cout << " (" << _heap->_data[i].minHeight << "," << _heap->_data[i].roadNum + 1 << ")";
+		cout << endl;
+		_heap->fixHeap(_heap->_data[index].roadNum, _roads);
 	}
-	//else cout << endl << bridgeHeight << " is higher than " << _heap->data[index].first << endl;
+	else cout << endl << bridgeHeight << " is higher than " << _heap->_data[_heap->_data[index].roadNum].minHeight << endl;
 
 
-	//cout << "heap after: ";
-	//for (int i = 0; i < _numOfRoads; i++)
-	//	cout << " (" << _heap->data[i].first << "," << _heap->data[i].second << ")";
+	cout << "heap after: ";
+	for (int i = 0; i < _numOfRoads; i++)
+		cout << " (" << _heap->_data[i].minHeight << "," << _heap->_data[i].roadNum + 1 << ")";
 
-	//cout << endl;
-	//cout << endl;
+	cout << endl;
+	cout << endl;
 }
 
-int Manager::WhichRoad(float truckHeight)
+void Manager::WhichRoad(float truckHeight) const
 {
-	float max = _heap->data[0].first;
+	float max = _heap->_data[0].minHeight;
 
 	if (truckHeight < max)
-		return _heap->data[0].second + 1;
-
-	else return 0;
+		cout << _heap->_data[0].roadNum + 1 << endl;
+	else
+		cout << "0" << endl;
 }
 
-void Manager::Print(int road)
+void Manager::Print(int road) const
 {
 	_roads[road - 1].getList()->printList();
 }
@@ -117,26 +118,13 @@ void Manager::getNumOfRoadsAndActions()
 {
 	cin >> _numOfRoads;
 	if (_numOfRoads <= 0)
-		throw std::invalid_argument("invalid");
+		throw std::invalid_argument("wrong input");
 	cin >> _numOfActions;
+	if (_numOfActions <= 0)
+		throw std::invalid_argument("wrong input");
 }
 
-void Manager::getParameters(char action, float* bridgeHeight, int* road, float* truckHeight)
+bool Manager::isValidInput(int inputUser, int from, int to)
 {
-	switch (action)
-	{
-	case 'b':
-		cin >> *bridgeHeight;
-		cin >> *road;
-		break;
-	case 'c':
-		cin >> *truckHeight;
-		break;
-	case 'd':
-		cin >> *road;
-		break;
-	default:
-		break;
-	}
+	return inputUser >= from && inputUser <= to;
 }
-

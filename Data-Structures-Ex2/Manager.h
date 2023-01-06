@@ -5,23 +5,17 @@
 class Manager
 {
 private:
+	MaxHeap* _heap; 
+	Road* _roads; 
 	int _numOfRoads;
 	int _numOfActions;
 
-	MaxHeap* _heap; // error: send params?
-	Road* _roads; // error: change to Road** ?
-	//pair<float, int>* _heapArray;
-
 public:
-	Manager();
 	void Run();
 	void getNumOfRoadsAndActions();
-	void getParameters(char action, float* bridgeHeight, int* road, float* truckHeight);
-
+	bool isValidInput(int inputUser, int from, int to);
 	void Init();
 	void AddBridge(float bridgeHeight, int roadIndex);
-	int WhichRoad(float truckHeight);
-	void Print(int road);
-
-
+	void WhichRoad(float truckHeight) const;
+	void Print(int road) const;
 };

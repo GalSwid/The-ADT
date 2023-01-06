@@ -6,18 +6,27 @@ List::List(Bridge* head, Bridge* tail)
 	_tail = tail;
 }
 
+List::~List()
+{
+	Bridge* curr = _head;
 
+	while (curr != nullptr)
+	{
+		Bridge* next = curr->getNext();
+		delete[] curr;
+		curr = next;
+	}
+}
 
 void List::makeEmpty()
 {
 	_head = nullptr;
 }
 
-bool List::isEmpty()
+bool List::isEmpty() const
 {
 	return _head == nullptr;
 }
-
 
 void List::insertDataToStartList(float bridgeHeight)
 {
@@ -34,10 +43,9 @@ void List::insertDataToStartList(float bridgeHeight)
 void List::insertDataToEndList(float bridgeHeight)
 {
 	Bridge* bridge = new Bridge(bridgeHeight, nullptr);
-	//Insert data to the end of the list
+	
 	if (isEmpty())
 		_tail = _head = bridge;
-
 	else
 	{
 		_tail->setNext(bridge);
@@ -45,32 +53,17 @@ void List::insertDataToEndList(float bridgeHeight)
 	}
 }
 
-void List::printList()
+void List::printList() const
 {
 	Bridge* curr = _head;
 
 	if (isEmpty()) {
-		cout << "List empty" << endl;
 		return;
 	}
 
-	cout << "List: ";
 	while (curr != nullptr) {
 		cout << curr->getHeight() << " ";
 		curr = curr->getNext();
 	}
-	cout << endl << endl;
-
-}
-
-List::~List()
-{
-	Bridge* curr = _head;
-
-	while (curr != nullptr)
-	{
-		Bridge* next = curr->getNext();
-		//delete[] curr;
-		curr = next;
-	}
+	cout << endl;
 }
