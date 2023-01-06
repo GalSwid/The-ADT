@@ -1,4 +1,4 @@
-# ADT - Roads & Bridges
+# Data Structure Assignment
 This project finds the best route for a truck to travel between city A and city B, 
 given m parallel roads that connect the two cities. 
 The roads do not intersect, and bridges may be built on the roads at any time. 
@@ -14,8 +14,23 @@ You will need a C++ compiler to build and run this project.
 
 Clone the repository to your local machine:
 
-git clone https://github.com/[USERNAME]/best-route-finder.git
+git clone https://github.com/galswid/The-ADT.git
 
+## Instructions
+
+Insert line by line:
+1. Number of roads (suppose that number of roads is 2)
+2. Number of actions (suppose that number of actions is 2)
+
+Now the first action must be "Init" - one and only.
+After that, continue to insert actions, for example:
+
+3. a 
+4. b 2.5 1
+
+Then press enter to continue..
+
+Note: Init - a, AddBridge(float, int) - b, WhichRoad(float) - c, Print(int) - d
 
 ## Initiate
 - The efficiency of the operation is O(m) in the worst case.
