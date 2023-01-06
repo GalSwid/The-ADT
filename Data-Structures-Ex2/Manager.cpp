@@ -45,7 +45,7 @@ void Manager::Run()
 		}
 		catch (const std::invalid_argument& err)
 		{
-			cout << "invalid_argument: " << err.what() << endl;
+			cout << err.what() << endl;
 		}
 	}
 }
@@ -54,7 +54,7 @@ void Manager::Init()
 {
 	for (int i = 0; i < _numOfRoads; i++)
 	{
-		_heap->data[i].first = INFINITY;	// min 
+		_heap->data[i].first = 100;	// min 
 		_heap->data[i].second = i;	// road num
 		_heap->heapSize++;
 
@@ -65,36 +65,37 @@ void Manager::Init()
 
 void Manager::AddBridge(float bridgeHeight, int roadIndex)
 {
-	_roads[roadIndex - 1].getList()->insertDataToStartList(bridgeHeight);
+	_roads[roadIndex - 1].getList()->insertDataToStartList(bridgeHeight); // insert 6.3 to bridge list of road 5
 
-	int index = _roads[roadIndex - 1].getMaxHeapIndex(); 
-	//cout << "index: " << index << endl;
-	//cout << "heapIndex: " << _heap->data[index].second << endl;
+	int index = _roads[roadIndex - 1].getMaxHeapIndex();
+	/*cout << "index: " << index << endl;
+	cout << "heapIndex: " << _heap->data[index].second << endl;
 
-	//cout << "_roads: ";
-	//for (int i = 0; i < _numOfRoads; i++)
-	//	cout << "  " << _roads[i].getMaxHeapIndex();
+	cout << "_roads: ";
+	for (int i = 0; i < _numOfRoads; i++)
+		cout << "  " << _roads[i].getMaxHeapIndex();
 
-	//cout << endl;
+	cout << endl;*/
 	if (bridgeHeight < _heap->data[_heap->data[index].second].first)
 	{
 		_heap->data[_heap->data[index].second].first = bridgeHeight;
 
-		/*cout << endl << "heap before: ";
-		for (int i = 0; i < _numOfRoads; i++)
-			cout << " (" << _heap->data[i].first << "," << _heap->data[i].second << ")";
-		cout << endl;*/
+		//cout << endl << "heap before: ";
+		//for (int i = 0; i < _numOfRoads; i++)
+		//	cout << " (" << _heap->data[i].first << "," << _heap->data[i].second << ")";
+		//cout << endl;
 
 		_heap->FixHeap(_heap->data[index].second, _roads);
 	}
-	/*else cout << endl << bridgeHeight << " is higher than " << _heap->data[index].first << endl;
+	//else cout << endl << bridgeHeight << " is higher than " << _heap->data[index].first << endl;
 
-	cout << "heap after: ";
-	for (int i = 0; i < _numOfRoads; i++)
-		cout << " (" << _heap->data[i].first << "," << _heap->data[i].second << ")";
 
-	cout << endl;
-	cout << endl;*/
+	//cout << "heap after: ";
+	//for (int i = 0; i < _numOfRoads; i++)
+	//	cout << " (" << _heap->data[i].first << "," << _heap->data[i].second << ")";
+
+	//cout << endl;
+	//cout << endl;
 }
 
 int Manager::WhichRoad(float truckHeight)
