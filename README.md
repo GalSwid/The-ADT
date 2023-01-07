@@ -62,12 +62,12 @@ void Init()
 void AddBridge(float bridgeHeight, int roadIndex)
 {
 	_roads[roadIndex - 1].getList()->insertDataToEndList(bridgeHeight); 
-
 	int index = _roads[roadIndex - 1].getMaxHeapIndex(); 
-	if (bridgeHeight < _heap->data[index].first)
+	
+	if (bridgeHeight < _heap->_data[index].minHeight)
 	{
-		_heap->data[index].first = bridgeHeight;
-		_heap->FixHeap(index, _roads);
+		_heap->_data[index].minHeight = bridgeHeight;
+		_heap->fixHeap(index, _roads);
 	}
 }
 ```
