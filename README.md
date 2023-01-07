@@ -41,11 +41,10 @@ void Init()
 {
 	for (int i = 0; i < _numOfRoads; i++)
 	{
-		_heap->data[i].first = 100;	// min 
-		_heap->data[i].second = i;	// road num
-		_heap->heapSize++;
-
-		_roads[i].getList()->setHead(NULL);
+		_heap->_data[i].minHeight = INT8_MAX;	// min 
+		_heap->_data[i].roadNum = i;	// road num
+		_heap->_heapSize++;
+		_roads[i].getList()->setHead(nullptr);
 		_roads[i].setMaxHeapIndex(i);
 	}
 }
@@ -62,13 +61,13 @@ void Init()
 ```cpp
 void AddBridge(float bridgeHeight, int roadIndex)
 {
-	_roads[roadIndex - 1].getList()->insertDataToStartList(bridgeHeight); 
+	_roads[roadIndex - 1].getList()->insertDataToEndList(bridgeHeight); 
 
 	int index = _roads[roadIndex - 1].getMaxHeapIndex(); 
-	if (bridgeHeight < _heap->data[_heap->data[index].second].first)
+	if (bridgeHeight < _heap->data[index].first)
 	{
-		_heap->data[_heap->data[index].second].first = bridgeHeight;
-		_heap->FixHeap(_heap->data[index].second, _roads);
+		_heap->data[index].first = bridgeHeight;
+		_heap->FixHeap(index, _roads);
 	}
 }
 ```
@@ -83,12 +82,12 @@ void AddBridge(float bridgeHeight, int roadIndex)
 ```cpp
 int WhichRoad(float truckHeight)
 {
-	float max = _heap->data[0].first;
+	float max = _heap->_data[0].minHeight;
 
 	if (truckHeight < max)
-		return _heap->data[0].second + 1;
-
-	else return 0;
+		cout << _heap->_data[0].roadNum + 1 << endl;
+	else
+		cout << "0" << endl;
 }
 ```
 
