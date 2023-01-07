@@ -27,8 +27,8 @@ private:
 public:
 	MaxHeap(int max = 1); 
 	void fixHeap(int node, Road* roads);
-	void swap(Pair* node, Pair* max);
-	void swapRoadsIndices(Road* node, Road* max);
+	void swap(Pair& node, Pair& max);
+	void swapRoadsIndices(Road& node, Road& max);
 	Pair max() { return _data[0]; }
 	Pair deleteMax(Road* road);
 	void insert(Pair item, Road* roads);

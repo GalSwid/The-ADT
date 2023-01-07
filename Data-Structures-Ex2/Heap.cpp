@@ -14,48 +14,48 @@ int MaxHeap::Parent(int node)
 
 int MaxHeap::Left(int node)
 {
-	return 2 * node + 1;
+	return (2 * node + 1);
 }
 
 int MaxHeap::Right(int node)
 {
-	return 2 * node + 2;
+	return (2 * node + 2);
 }
 
 void MaxHeap::fixHeap(int node, Road* roads)
 {
-	int max = node;
+	int max;
 	int l = Left(node);
 	int r = Right(node);
 
 	if (l < _heapSize && _data[l].minHeight > _data[node].minHeight)
 		max = l;
-
+	else max = node;
 	if (r < _heapSize && _data[r].minHeight > _data[max].minHeight)
 		max = r;
 
-	if (max != node) {
-		swap(&_data[node], &_data[max]);
-		swapRoadsIndices(&roads[node], &roads[max]);
+	if (max != node) 
+	{
+		swapRoadsIndices(roads[_data[node].roadNum], roads[_data[max].roadNum]);
+		swap(_data[node], _data[max]);
 		fixHeap(max, roads);
 	}
 }
 
-void MaxHeap::swap(Pair* node, Pair* max)
+void MaxHeap::swap(Pair& node, Pair& max)
 {
-	Pair temp{ *node };
-
-	*node = *max;
-	*max = temp;
+	Pair temp;
+	temp = node;
+	node = max;
+	max = temp;
 }
 
-void MaxHeap::swapRoadsIndices(Road* node, Road* max)
+void MaxHeap::swapRoadsIndices(Road& node, Road& max)
 {
-	Road temp{ *node };
-	int tempIndex = temp.getMaxHeapIndex();
-
-	node->setMaxHeapIndex(max->getMaxHeapIndex());
-	max->setMaxHeapIndex(temp.getMaxHeapIndex());
+	Road temp; 
+	temp.setMaxHeapIndex(node.getMaxHeapIndex());
+	node.setMaxHeapIndex(max.getMaxHeapIndex());
+	max.setMaxHeapIndex(temp.getMaxHeapIndex());
 }
 
 Pair MaxHeap::deleteMax(Road* road)

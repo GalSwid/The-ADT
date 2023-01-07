@@ -7,19 +7,18 @@ void Manager::Run()
 		getNumOfRoadsAndActions();
 		_roads = new Road[_numOfRoads];
 		_heap = new MaxHeap(_numOfRoads);
+		char action;
+		float bridgeHeight = 0;
+		float truckHeight = 0;
+		int road = 0;
 
 		for (int i = 0; i < _numOfActions; i++)
 		{
-			char action;
-			float bridgeHeight = 0;
-			int road = 0;
-			float truckHeight = 0;
-
 			cin >> action;
 			if (i == 0 && action != 'a')
-				throw std::invalid_argument("wrong input");
-			if (i !=0 && action == 'a')
-				throw std::invalid_argument("wrong input");
+				throw std::invalid_argument("invalid input");
+			if (i != 0 && action == 'a')
+				throw std::invalid_argument("invalid input");
 
 			switch (action)
 			{
@@ -29,23 +28,23 @@ void Manager::Run()
 			case 'b':
 				cin >> bridgeHeight >> road;
 				if (!isValidInput(road, 1, _numOfRoads) || bridgeHeight <= 0)
-					throw std::invalid_argument("wrong input");
+					throw std::invalid_argument("invalid input");
 				AddBridge(bridgeHeight, road);
 				break;
 			case 'c':
 				cin >> truckHeight;
 				if (truckHeight <= 0)
-					throw std::invalid_argument("wrong input");
+					throw std::invalid_argument("invalid input");
 				WhichRoad(truckHeight);
 				break;
 			case 'd':
 				cin >> road;
 				if (!isValidInput(road, 1, _numOfRoads))
-					throw std::invalid_argument("wrong input");
+					throw std::invalid_argument("invalid input");
 				Print(road);
 				break;
 			default:
-				throw std::invalid_argument("wrong input");
+				throw std::invalid_argument("invalid input");
 			}
 		}
 	}
@@ -60,10 +59,9 @@ void Manager::Init()
 {
 	for (int i = 0; i < _numOfRoads; i++)
 	{
-		_heap->_data[i].minHeight = FLT_MAX;	// min 
+		_heap->_data[i].minHeight = INT8_MAX;	// min 
 		_heap->_data[i].roadNum = i;	// road num
 		_heap->_heapSize++;
-
 		_roads[i].getList()->setHead(nullptr);
 		_roads[i].setMaxHeapIndex(i);
 	}
@@ -71,24 +69,25 @@ void Manager::Init()
 
 void Manager::AddBridge(float bridgeHeight, int roadIndex)
 {
-	_roads[roadIndex - 1].getList()->insertDataToStartList(bridgeHeight);
+	_roads[roadIndex - 1].getList()->insertDataToEndList(bridgeHeight);
 
-	int index = _roads[roadIndex - 1].getMaxHeapIndex();
-	cout << "heapIndex: " << _heap->_data[index].roadNum + 1 << endl;
-	cout << "_roads: ";
+	/*cout << "_roads: ";
 	for (int i = 0; i < _numOfRoads; i++)
-		cout << "  " << _roads[i].getMaxHeapIndex() + 1;
-	cout << endl;
-	if (bridgeHeight < _heap->_data[_heap->_data[index].roadNum].minHeight)
+		cout << "  " << _roads[i].getMaxHeapIndex();
+	cout << endl;*/
+	int index = _roads[roadIndex - 1].getMaxHeapIndex();
+	//cout << "index: " << index << endl;
+	//cout << "heapIndex: " << _heap->_data[index].roadNum << endl;
+	if (bridgeHeight < _heap->_data[index].minHeight)
 	{
-		_heap->_data[_heap->_data[index].roadNum].minHeight = bridgeHeight;
-		cout << endl << "heap before: ";
+		_heap->_data[index].minHeight = bridgeHeight;
+		/*cout << endl << "heap before: ";
 		for (int i = 0; i < _numOfRoads; i++)
-		cout << " (" << _heap->_data[i].minHeight << "," << _heap->_data[i].roadNum + 1 << ")";
-		cout << endl;
-		_heap->fixHeap(_heap->_data[index].roadNum, _roads);
+		cout << " (" << _heap->_data[i].minHeight << "," << _heap->_data[i].roadNum+1 << ")";
+		cout << endl;*/
+		_heap->fixHeap(index, _roads);
 	}
-	else cout << endl << bridgeHeight << " is higher than " << _heap->_data[_heap->_data[index].roadNum].minHeight << endl;
+	/*else cout << endl << bridgeHeight << " is higher than " << _heap->_data[index].minHeight << endl;
 
 
 	cout << "heap after: ";
@@ -96,7 +95,7 @@ void Manager::AddBridge(float bridgeHeight, int roadIndex)
 		cout << " (" << _heap->_data[i].minHeight << "," << _heap->_data[i].roadNum + 1 << ")";
 
 	cout << endl;
-	cout << endl;
+	cout << endl;*/
 }
 
 void Manager::WhichRoad(float truckHeight) const
@@ -117,11 +116,11 @@ void Manager::Print(int road) const
 void Manager::getNumOfRoadsAndActions()
 {
 	cin >> _numOfRoads;
-	if (_numOfRoads <= 0)
-		throw std::invalid_argument("wrong input");
+	if (_numOfRoads < 0)
+		throw std::invalid_argument("invalid input");
 	cin >> _numOfActions;
 	if (_numOfActions <= 0)
-		throw std::invalid_argument("wrong input");
+		throw std::invalid_argument("invalid input");
 }
 
 bool Manager::isValidInput(int inputUser, int from, int to)

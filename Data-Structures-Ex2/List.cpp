@@ -20,7 +20,7 @@ List::~List()
 
 void List::makeEmpty()
 {
-	_head = nullptr;
+	_head = _tail = nullptr;
 }
 
 bool List::isEmpty() const
@@ -30,7 +30,7 @@ bool List::isEmpty() const
 
 void List::insertDataToStartList(float bridgeHeight)
 {
-	Bridge* bridge = new Bridge(bridgeHeight, NULL);
+	Bridge* bridge = new Bridge(bridgeHeight, nullptr);
 
 	if (_head == NULL)
 		this->setHead(bridge);
@@ -53,16 +53,40 @@ void List::insertDataToEndList(float bridgeHeight)
 	}
 }
 
+void List::insertDataToSortedList(float bridgeHeight)
+{
+	Bridge* newNode = new Bridge(bridgeHeight, nullptr);
+
+	if (_head == nullptr || _head->getHeight() <= newNode->getHeight()) 
+	{
+		newNode->setNext(_head);
+		_head = newNode;
+	}
+	else 
+	{
+		Bridge* curr = _head;
+		while (curr->getNext() != nullptr && curr->getNext()->getHeight() > newNode->getHeight())
+		{
+			curr = curr->getNext();
+		}
+		newNode->setNext(curr->getNext());
+		curr->setNext(newNode);
+	}
+}
+
 void List::printList() const
 {
 	Bridge* curr = _head;
 
-	if (isEmpty()) {
+	if (isEmpty()) 
+	{
+		cout << "Empty List" << endl;
 		return;
 	}
 
-	while (curr != nullptr) {
-		cout << curr->getHeight() << " ";
+	while (curr != nullptr) 
+	{
+		cout << std::fixed << std::setprecision(4) << curr->getHeight() << " ";
 		curr = curr->getNext();
 	}
 	cout << endl;
